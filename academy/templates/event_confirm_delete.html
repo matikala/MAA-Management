@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Delete {% if event.event_type %} Camp {% else %} Traineeship {% endif %}</h1>
+
+<p>Are you sure you want to delete {% if event.event_type %} camp {% else %} traineeship {% endif %}: {{ event }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}

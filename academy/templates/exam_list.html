@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Exam List</h1>
+  {% if exam_list %}
+  <ul>
+    {% for exam in exam_list %}
+      <li>
+          <a href="{{ exam.get_absolute_url }}"><strong>{{ exam.student_id }} {{ exam.degree }}</strong></a> {% if perms.academy.can_manage_exam %} <a href="{% url 'exam-update' exam.pk %}">Update</a> - <a href="{% url 'exam-delete' exam.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no exams.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'exam-create' %}">Create Exam</a></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Privilege List</h1>
+  {% if privilege_list %}
+  <ul>
+    {% for privilege in privilege_list %}
+      <li>
+          <a href="{{ privilege.get_absolute_url }}"><strong>{{ privilege.name }} {{ privilege.trainer_id }}</strong></a> {% if perms.academy.can_manage_privilege %} <a href="{% url 'privilege-update' privilege.pk %}">Update</a> - <a href="{% url 'privilege-delete' privilege.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no privileges.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'privilege-create' %}">Create Privileges</a></p>
+    {% endif %}
+{% endblock %}

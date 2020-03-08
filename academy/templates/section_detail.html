@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Section: {{ section.name }}</h1>
+
+    <p><strong>ID:</strong> {{ section.id }}</p>
+    <p><strong>Location:</strong> {{ section.location }}</p>
+    <p><strong>Amount of trainings:</strong> {{ section.amount_of_trainings }}</p>
+    <p><strong>Trainer:</strong> {{ section.trainer_id }}</p>
+{##}
+{#    {% if student.exam_set.all %}#}
+{#        <h2>Exams:</h2>#}
+{#        {% for exam in student.exam_set.all %}#}
+{#            <p>{{ exam.id }} {{ exam.degree }} {{ exam.price }} {{ exam.date }} {{ exam.is_paid }}</p>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{##}
+{#    {% if student.event_set.all %}#}
+{#        <h2>Events:</h2>#}
+{#        {% for event in student.event_set.all %}#}
+{#            <p>{{ event.id }} {{ event.name }} {{ event.location }} {{ event.date }} {{ event.event_type|yesno:"Oboz,Staz" }}</p>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+
+{% endblock %}

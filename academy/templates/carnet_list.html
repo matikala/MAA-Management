@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Carnet List</h1>
+  {% if carnet_list %}
+  <ul>
+    {% for carnet in carnet_list %}
+      <li>
+          <a href="{{ carnet.get_absolute_url }}"><strong>{{ carnet.student_id }} {{ carnet.month}} {{ carnet.year }}</strong></a> {% if perms.academy.can_manage_carnet  %} <a href="{% url 'carnet-update' carnet.pk %}">Update</a> - <a href="{% url 'carnet-delete' carnet.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no carnet.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'carnet-create' %}">Create Carnet</a></p>
+    {% endif %}
+{% endblock %}

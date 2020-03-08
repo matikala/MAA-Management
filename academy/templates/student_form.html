@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <form action="" method="post" id="register" autocomplete="off">
+    {% csrf_token %}
+    <table>
+        {{ user_form.as_table }}
+        {{ profile_form.as_table }}
+    </table>
+    <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}

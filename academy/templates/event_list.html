@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Event List</h1>
+  {% if event_list %}
+  <ul>
+    {% for event in event_list %}
+      <li>
+          <a href="{{ event.get_absolute_url }}"><strong>{{ event.event_type|yesno:"Camp,Traineeship" }} {{ event.name }} {{ event.date }} </strong></a> {% if perms.academy.can_manage_event %} <a href="{% url 'event-update' event.pk %}">Update</a> - <a href="{% url 'event-delete' event.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no events.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'event-create' %}">Create Event</a></p>
+    {% endif %}
+{% endblock %}

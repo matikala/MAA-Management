@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Training in {{ training.section_id }} </h1>
+
+    <p><strong>ID:</strong> {{ training.id }}</p>
+    <p><strong>Date:</strong> {{ training.date }}</p>
+    <p><strong>Exact location:</strong> {{ training.rental_price }}</p>
+{% if perms.academy.can_read_all_section_data %}
+    <p><strong>Amount of students:</strong> {{ training.amount_of_students }}</p>
+    <p><strong>Rental price:</strong> {{ training.rental_price }}</p>
+    <p><strong>Paid:</strong> {{ training.rental_price|yesno:"Yes,No" }}</p>
+{% endif %}
+
+{% endblock %}

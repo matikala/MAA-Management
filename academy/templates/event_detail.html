@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{% if event.event_type %} Camp{% else %} Traineeship{% endif %}: {{ event.name }} </h1>
+
+    <p><strong>ID:</strong> {{ event.id }}</p>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Description:</strong> {{ event.price }}</p>
+    {% if event.event_type %}
+        <p><strong>Amount of days:</strong> {{ event.amount_of_days }}</p>
+    {% else %}
+        <p><strong>Amount of time:</strong> {{ event.amount_of_time }}</p>
+    {% endif %}
+
+    <p><strong>Students taking part in:</strong></p>
+
+    {% for student in event.students.all %}
+       <p>{{ student }}</p>
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>403 Forbidden</h1>
+    {% if user.is_authenticated %}
+        <p>You do not have access to this page. </p>
+    {% else %}
+        <p>Page available only for signed in users.</p>
+
+        <p><a href="{% url 'login' %}?next={{ request.path }}">Login</a></p>
+    {% endif %}
+{% endblock %}

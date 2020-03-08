@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Trainers List</h1>
+  {% if trainer_list %}
+  <ul>
+    {% for trainer in trainer_list %}
+      <li>
+          <a href="{{ trainer.get_absolute_url }}"><strong>{{ trainer.user.first_name }} {{ trainer.user.last_name }} {{ trainer.phone_number }}</strong></a> {% if perms.academy.can_manage_trainer %} <a href="{% url 'trainer-update' trainer.pk %}">Update</a> - <a href="{% url 'trainer-delete' trainer.user.pk %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no trainers.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'trainer-create' %}">Create Trainer</a></p>
+    {% endif %}
+{% endblock %}

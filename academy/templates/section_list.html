@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Section List</h1>
+  {% if section_list %}
+  <ul>
+    {% for section in section_list %}
+      <li>
+          <a href="{{ section.get_absolute_url }}"><strong>{{ section.location }} {{ section.trainer_id }}</strong></a> {% if perms.academy.can_manage_section %} <a href="{% url 'section-update' section.pk %}">Update</a> - <a href="{% url 'section-delete' section.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no sections.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'section-create' %}">Create Section</a></p>
+    {% endif %}
+{% endblock %}

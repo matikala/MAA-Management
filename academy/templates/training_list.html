@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load extras %}
+{% block content %}
+  <h1>Training list</h1>
+  {% if training_list %}
+  <ul>
+    {% for training in training_list %}
+      <li>
+          <a href="{{ training.get_absolute_url }}"><strong>{{ training.section_id }} {{ training.date }}</strong></a> {% if perms.academy.can_manage_training %} <a href="{% url 'training-update' training.pk %}">Update</a> - <a href="{% url 'training-delete' training.id %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no trainings.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'training-create' %}">Create Training</a></p>
+    {% endif %}
+{% endblock %}

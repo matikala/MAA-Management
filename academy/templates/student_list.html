@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{%  load extras %}
+{% block content %}
+  <h1>Students List</h1>
+    {% if student_list %}
+  <ul>
+    {% for student in student_list %}
+      <li>
+          <a href="{{ student.get_absolute_url }}"><strong>{{ student.user.first_name }} {{ student.user.last_name }} {{ student.section_id }}</strong></a> {% if perms.academy.can_manage_student %} <a href="{% url 'student-update' student.pk %}">Update</a> - <a href="{% url 'student-delete' student.user.pk %}">Delete</a> {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no students.</p>
+  {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if request.user|has_group:"trainer" %}
+        <p><a href="{% url 'student-create' %}">Create Student</a></p>
+    {% endif %}
+{% endblock %}

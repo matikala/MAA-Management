@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Carnet: {{ carnet.student_id }} </h1>
+
+
+    <p><strong>ID:</strong> {{ carnet.id }}</p>
+    <p><strong>Month Year:</strong> {{ carnet.month }} {{ carnet.year }}</p>
+    <p><strong>Price:</strong> {{ carnet.price }}</p>
+    <p><strong>Paid:</strong> {{ carnet.is_paid|yesno:"Yes,No" }}</p>
+
+{% endblock %}

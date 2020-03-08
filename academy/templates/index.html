@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Academy Managing System</title> {% endblock %}
+{% block content %}
+    <h1>Martial Art Academy Managing System</h1>
+    <p>Firstly you need to log in.</p>
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

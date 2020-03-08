@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Student: {{ student.user.first_name }} {{ student.user.last_name }}</h1>
+
+    <p><strong>ID:</strong> {{ student.user.id }}</p>
+    <p><strong>Born date:</strong> {{ student.born_date }}</p>
+    <p><strong>Enter date:</strong> {{ student.enter_date }}</p>
+    <p><strong>Phone number:</strong> {{ student.phone_number }}</p>
+    <p><strong>Section:</strong> {{ student.section_id.location }}</p>
+
+    {% if student.exam_set.all %}
+        <h2>Exams:</h2>
+        <table>
+            <tr>
+                <th>Degree</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Paid type</th>
+            </tr>
+            {% for exam in student.exam_set.all %}
+                <tr>
+                    <td>{{ exam.degree }}</td>
+                    <td>{{ exam.date }}</td>
+                    <td>{{ exam.price }}</td>
+                    <td>{{ exam.is_paid|yesno:"Camp,Traineeship" }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if student.event_set.all %}
+        <h2>Events:</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Event type</th>
+            </tr>
+            {% for event in student.event_set.all %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.event_type|yesno:"Camp,Traineeship" }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if student.carnet_set.all %}
+        <h2>Carnets:</h2>
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Paid</th>
+            </tr>
+            {% for carnet in student.carnet_set.all %}
+                <tr>
+                    <td>{{ carnet.month }}</td>
+                    <td>{{ carnet.year }}</td>
+                    <td>{{ carnet.price }}</td>
+                    <td>{{ carnet.is_paid|yesno:"Yes,No" }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}

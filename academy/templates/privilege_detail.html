@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Privilege: {{ privilege.name }} </h1>
+
+    <p><strong>ID:</strong> {{ privilege.id }}</p>
+    <p><strong>Document name:</strong> {{ privilege.document_name }}</p>
+    <p><strong>Trainer:</strong> {{ privilege.trainer_id }}</p>
+    <p><strong>Obtain date:</strong> {{ privilege.obtain_date }}</p>
+    <p><strong>Expiration date:</strong> {{ privilege.expiration_date }}</p>
+
+{% endblock %}

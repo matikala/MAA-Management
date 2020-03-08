@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Trainer: {{ trainer.user.first_name }} {{ trainer.user.last_name }}</h1>
+
+    <p><strong>Born date:</strong> {{ trainer.born_date }}</p>
+    <p><strong>Phone number:</strong> {{ trainer.phone_number }}</p>
+    <p><strong>Master degree:</strong> {{ trainer.master_degree }}</p>
+    <p><strong>Salary:</strong> {{ trainer.salary }}</p>
+
+    {% if trainer.section_set.all %}
+        <h2>Sections:</h2>
+        <table>
+            <tr>
+                <th>Location</th>
+                <th>Amount of trainings</th>
+            </tr>
+            {% for section in trainer.section_set.all %}
+                <tr>
+                    <td>{{ section.location }}</td>
+                    <td>{{ section.amount_of_trainings }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if trainer.privilege_set.all %}
+        <h2>Privileges:</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Expiration date</th>
+            </tr>
+            {% for privilege in trainer.privilege_set.all %}
+                <tr>
+                    <td>{{ privilege.name }}</td>
+                    <td>{{ privilege.expiration_date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

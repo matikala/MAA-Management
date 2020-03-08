@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Exam: {{ exam.student_id }} {{ exam.degree }} </h1>
+
+    <p><strong>ID:</strong> {{ exam.id }}</p>
+    <p><strong>Date:</strong> {{ exam.date }}</p>
+    <p><strong>Price:</strong> {{ exam.price }}</p>
+    <p><strong>Paid:</strong> {{ exam.is_paid|yesno:"Yes,No" }}</p>
+
+{% endblock %}
